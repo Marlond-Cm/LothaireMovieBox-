@@ -1664,8 +1664,7 @@ a {
 ========================================= */
 
 button:focus-visible,
-a:focus-visible,
-input:focus-visible {
+a:focus-visible {
     outline: 2px solid #60a5fa;
 
     outline-offset: 3px;

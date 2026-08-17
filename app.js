@@ -9,19 +9,8 @@
    CONFIGURATION TMDB
 ========================================= */
 
-// -----------------------------------------
-// IMPORTANT
-// -----------------------------------------
-// Nous allons mettre ton token TMDB ici
-// lorsque tu l'auras.
-//
-// Pour l'instant, laisse cette valeur vide.
-//
-// Exemple :
-// const TMDB_TOKEN = "ton_token_ici";
-// -----------------------------------------
 
-const TMDB_TOKEN = "";
+const TMDB_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZGQzYWVlNjVmNTdlMDg2ZjJhNzY5MDRiNmRkNWUyYSIsIm5iZiI6MTc4NjYxNDMwMS4zMDQsInN1YiI6IjZhN2Q5MjFkNTAzMzQ0ZTFjOTQ0MzRlMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pMqRMbGBSnZpIBLa6GHF5R_RCHlkWieueMGsZCHr1WE";
 
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
