@@ -1,0 +1,565 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="LothaireMovieBox - Découvrez les films populaires, recherchez vos films préférés et sauvegardez-les."
+    >
+
+    <title>LothaireMovieBox | Catalogue de Films</title>
+
+    <!-- Police Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Icônes Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
+
+    <header class="navbar">
+
+        <div class="container navbar-container">
+
+            <a href="#" class="logo" id="logo">
+
+                <span class="logo-icon">
+                    <i class="fa-solid fa-film"></i>
+                </span>
+
+                <span class="logo-text">
+                    Lothaire<span>MovieBox</span>
+                </span>
+
+            </a>
+
+
+            <button
+                class="menu-toggle"
+                id="menu-toggle"
+                aria-label="Ouvrir le menu"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+
+            <nav class="nav-menu" id="nav-menu">
+
+                <a href="#accueil" class="nav-link active">
+                    <i class="fa-solid fa-house"></i>
+                    Accueil
+                </a>
+
+                <a href="#films" class="nav-link">
+                    <i class="fa-solid fa-film"></i>
+                    Films
+                </a>
+
+                <a href="#favoris" class="nav-link">
+                    <i class="fa-solid fa-heart"></i>
+                    Favoris
+                    <span class="favorites-count" id="favorites-count">0</span>
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         HERO
+    ========================================== -->
+
+    <main>
+
+        <section class="hero" id="accueil">
+
+            <div class="hero-overlay"></div>
+
+            <div class="container hero-content">
+
+                <span class="hero-badge">
+                    <i class="fa-solid fa-clapperboard"></i>
+                    Votre cinéma numérique
+                </span>
+
+                <h1>
+                    Découvrez votre
+                    <span>prochain film</span>
+                </h1>
+
+                <p>
+                    Explorez les films populaires, recherchez vos favoris
+                    et construisez votre propre collection.
+                </p>
+
+
+                <!-- Recherche -->
+
+                <form class="search-box" id="search-form">
+
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+
+                    <input
+                        type="search"
+                        id="search-input"
+                        placeholder="Rechercher un film..."
+                        autocomplete="off"
+                    >
+
+                    <button type="submit" id="search-button">
+                        Rechercher
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             CONTENU PRINCIPAL
+        ========================================== -->
+
+        <section class="movies-section" id="films">
+
+            <div class="container">
+
+                <!-- En-tête -->
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            <i class="fa-solid fa-fire"></i>
+                            Catalogue
+                        </span>
+
+                        <h2 id="section-title">
+                            Films populaires
+                        </h2>
+
+                    </div>
+
+                    <button
+                        class="clear-search hidden"
+                        id="clear-search"
+                    >
+                        <i class="fa-solid fa-xmark"></i>
+                        Effacer la recherche
+                    </button>
+
+                </div>
+
+
+                <!-- Loader -->
+
+                <div class="loader-container hidden" id="loader">
+
+                    <div class="loader"></div>
+
+                    <p>
+                        Chargement des films...
+                    </p>
+
+                </div>
+
+
+                <!-- Message d'erreur -->
+
+                <div
+                    class="error-message hidden"
+                    id="error-message"
+                >
+
+                    <div class="error-icon">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+
+                    <h3>Oups ! Une erreur est survenue</h3>
+
+                    <p id="error-text">
+                        Impossible de récupérer les films.
+                    </p>
+
+                    <button
+                        class="retry-button"
+                        id="retry-button"
+                    >
+                        <i class="fa-solid fa-rotate-right"></i>
+                        Réessayer
+                    </button>
+
+                </div>
+
+
+                <!-- Aucun résultat -->
+
+                <div
+                    class="no-results hidden"
+                    id="no-results"
+                >
+
+                    <div class="no-results-icon">
+                        <i class="fa-solid fa-film"></i>
+                    </div>
+
+                    <h3>Aucun film trouvé</h3>
+
+                    <p>
+                        Essayez avec un autre titre.
+                    </p>
+
+                </div>
+
+
+                <!-- Grille des films -->
+
+                <div
+                    class="movies-grid"
+                    id="movies-container"
+                >
+                    <!-- Les films seront générés par JavaScript -->
+                </div>
+
+
+                <!-- Pagination -->
+
+                <div
+                    class="pagination hidden"
+                    id="pagination"
+                >
+
+                    <button
+                        class="pagination-button"
+                        id="previous-page"
+                    >
+                        <i class="fa-solid fa-chevron-left"></i>
+                        Précédent
+                    </button>
+
+                    <span id="page-info">
+                        Page 1
+                    </span>
+
+                    <button
+                        class="pagination-button"
+                        id="next-page"
+                    >
+                        Suivant
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             FAVORIS
+        ========================================== -->
+
+        <section
+            class="favorites-section"
+            id="favoris"
+        >
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            <i class="fa-solid fa-heart"></i>
+                            Ma collection
+                        </span>
+
+                        <h2>
+                            Mes films favoris
+                        </h2>
+
+                    </div>
+
+                    <span
+                        class="favorites-total"
+                        id="favorites-total"
+                    >
+                        0 film
+                    </span>
+
+                </div>
+
+
+                <!-- Favoris vides -->
+
+                <div
+                    class="empty-favorites"
+                    id="empty-favorites"
+                >
+
+                    <div class="empty-favorites-icon">
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+
+                    <h3>
+                        Aucun favori pour le moment
+                    </h3>
+
+                    <p>
+                        Cliquez sur le cœur d'un film pour l'ajouter
+                        à votre collection.
+                    </p>
+
+                </div>
+
+
+                <!-- Grille favoris -->
+
+                <div
+                    class="movies-grid favorites-grid"
+                    id="favorites-container"
+                >
+                    <!-- Favoris générés par JavaScript -->
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         MODALE DÉTAILS
+    ========================================== -->
+
+    <div
+        class="modal hidden"
+        id="movie-modal"
+        aria-hidden="true"
+    >
+
+        <div class="modal-overlay" id="modal-overlay"></div>
+
+        <div
+            class="modal-content"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+        >
+
+            <button
+                class="modal-close"
+                id="modal-close"
+                aria-label="Fermer"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+
+            <div class="modal-backdrop">
+
+                <img
+                    id="modal-backdrop-image"
+                    src=""
+                    alt=""
+                >
+
+                <div class="modal-backdrop-overlay"></div>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="modal-poster">
+
+                    <img
+                        id="modal-poster-image"
+                        src=""
+                        alt=""
+                    >
+
+                </div>
+
+
+                <div class="modal-info">
+
+                    <span
+                        class="modal-tag"
+                        id="modal-tag"
+                    >
+                        Film
+                    </span>
+
+                    <h2 id="modal-title">
+                        Titre du film
+                    </h2>
+
+
+                    <div class="modal-meta">
+
+                        <span id="modal-date">
+                            <i class="fa-regular fa-calendar"></i>
+                            -
+                        </span>
+
+                        <span id="modal-rating">
+                            <i class="fa-solid fa-star"></i>
+                            -
+                        </span>
+
+                    </div>
+
+
+                    <div class="genres" id="modal-genres">
+                        <!-- Genres -->
+                    </div>
+
+
+                    <h3>
+                        Synopsis
+                    </h3>
+
+                    <p id="modal-overview">
+                        Aucun synopsis disponible.
+                    </p>
+
+
+                    <button
+                        class="modal-favorite-button"
+                        id="modal-favorite-button"
+                    >
+                        <i class="fa-regular fa-heart"></i>
+                        Ajouter aux favoris
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <div class="footer-brand">
+
+                <a href="#" class="logo">
+
+                    <span class="logo-icon">
+                        <i class="fa-solid fa-film"></i>
+                    </span>
+
+                    <span class="logo-text">
+                        Lothaire<span>MovieBox</span>
+                    </span>
+
+                </a>
+
+                <p>
+                    Votre catalogue de films personnel.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="#accueil">
+                    Accueil
+                </a>
+
+                <a href="#films">
+                    Films
+                </a>
+
+                <a href="#favoris">
+                    Favoris
+                </a>
+
+            </div>
+
+
+            <div class="footer-tmdb">
+
+                <p>
+                    Les données de films sont fournies par
+                    <strong>TMDB</strong>.
+                </p>
+
+                <small>
+                    This product uses the TMDB API but is not endorsed
+                    or certified by TMDB.
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 LothaireMovieBox — Tous droits réservés.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Bouton retour en haut -->
+
+    <button
+        class="back-to-top"
+        id="back-to-top"
+        aria-label="Retour en haut"
+    >
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+
+    <!-- JavaScript -->
+
+    <script src="app.js"></script>
+
+</body>
+</html>
+
