@@ -227,53 +227,13 @@ document.addEventListener("DOMContentLoaded", () => {
     mettreAJourCompteurFavoris();
 
     // Pour l'instant, affichage de démonstration.
-    afficherMessageConfiguration();
+    chargerFilmsPopulaires();
+   
 
 });
 
 
-/* =========================================
-   MESSAGE DE CONFIGURATION
-========================================= */
 
-function afficherMessageConfiguration() {
-
-    if (TMDB_TOKEN === "") {
-
-        sectionTitle.textContent =
-            "LothaireMovieBox est prêt !";
-
-        moviesContainer.innerHTML = `
-
-            <div class="error-message"
-                 style="grid-column: 1 / -1;">
-
-                <div class="error-icon">
-
-                    <i class="fa-solid fa-key"></i>
-
-                </div>
-
-                <h3>
-                    API TMDB à configurer
-                </h3>
-
-                <p>
-                    Ton interface est prête.
-                    Il reste maintenant à connecter
-                    ton token TMDB dans app.js.
-                </p>
-
-            </div>
-
-        `;
-
-        return;
-    }
-
-    chargerFilmsPopulaires();
-
-}
 
 
 /* =========================================
